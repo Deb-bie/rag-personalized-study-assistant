@@ -43,7 +43,10 @@ async def register(
     )
     
     access_token = create_access_token(
-        data={"sub": db_user.username}, expires_delta=access_token_expires
+        data={
+            "sub": db_user.email
+        }, 
+        expires_delta=access_token_expires
     )
     
     return {
@@ -52,8 +55,6 @@ async def register(
         "access_token": access_token, 
         "token_type": "bearer"
     }
-    
-    # return db_user
 
 
 @router.post("/login", response_model=AuthResponse)
