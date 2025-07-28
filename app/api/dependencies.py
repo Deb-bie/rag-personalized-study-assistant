@@ -29,7 +29,7 @@ async def get_current_user(
             detail="Could not validate credentials"
         )
     
-    user = db.query(User).filter(User.username == username).first()
+    user = db.query(User).filter(User.email == username).first()
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
